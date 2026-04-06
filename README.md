@@ -17,6 +17,14 @@
 - 전사 규칙의 정본 문서
 - 서버 배포 방법이나 운영 절차 상세
 
+## change id 규칙
+
+- change id는 `chg-YYYYMMDD-NNN` 형식을 사용한다.
+- `YYYYMMDD`는 변경 요청을 등록한 날짜를 뜻한다.
+- `NNN`은 같은 날짜 안에서 001부터 증가하는 세 자리 일련번호다.
+- change request, 구현 PR, rollout 기록, rollback 요청은 같은 작업 단위라면 하나의 change id를 공유한다.
+- change id는 변경 요청 이슈를 등록할 때 발급하고 이후 관련 산출물에서 그대로 재사용한다.
+
 ## 기본 흐름
 
 1. 변경 요청을 등록한다.

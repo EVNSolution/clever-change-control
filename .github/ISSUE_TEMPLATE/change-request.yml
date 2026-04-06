@@ -9,6 +9,14 @@ body:
       placeholder: 변경 요청 제목을 입력한다.
     validations:
       required: true
+  - type: input
+    id: change-id
+    attributes:
+      label: change id
+      placeholder: 예) chg-20260406-001
+      description: 변경 요청 등록 시 `chg-YYYYMMDD-NNN` 형식으로 발급한다.
+    validations:
+      required: true
   - type: textarea
     id: purpose
     attributes:

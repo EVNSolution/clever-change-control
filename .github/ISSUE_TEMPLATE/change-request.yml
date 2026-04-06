@@ -1,0 +1,55 @@
+name: Change Request
+description: 변경 요청을 등록한다.
+title: "[Change] "
+body:
+  - type: input
+    id: title
+    attributes:
+      label: 제목
+      placeholder: 변경 요청 제목을 입력한다.
+    validations:
+      required: true
+  - type: textarea
+    id: purpose
+    attributes:
+      label: 목적
+      placeholder: 왜 이 변경이 필요한지 작성한다.
+    validations:
+      required: true
+  - type: textarea
+    id: constraints
+    attributes:
+      label: 제약
+      placeholder: 일정, 범위, 의존성, 제외 조건을 작성한다.
+    validations:
+      required: true
+  - type: dropdown
+    id: ui-impact
+    attributes:
+      label: UI 영향 여부
+      options:
+        - 있음
+        - 없음
+    validations:
+      required: true
+  - type: input
+    id: target-repo
+    attributes:
+      label: 대상 repo
+      placeholder: 예) clever-context-monorepo
+    validations:
+      required: true
+  - type: input
+    id: target-service
+    attributes:
+      label: 대상 service
+      placeholder: 예) billing-api
+    validations:
+      required: true
+  - type: textarea
+    id: expected-result
+    attributes:
+      label: 기대 결과
+      placeholder: 완료 기준과 기대 산출물을 작성한다.
+    validations:
+      required: true

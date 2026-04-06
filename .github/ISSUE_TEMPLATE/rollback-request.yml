@@ -1,6 +1,6 @@
-name: Rollback Request
+name: 롤백 요청
 description: 롤백 요청을 등록한다.
-title: "[Rollback] "
+title: "[롤백] "
 body:
   - type: input
     id: change-id

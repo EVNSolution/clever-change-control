@@ -1,6 +1,6 @@
-name: Change Request
+name: 변경 요청
 description: 변경 요청을 등록한다.
-title: "[Change] "
+title: "[변경] "
 body:
   - type: input
     id: title

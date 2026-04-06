@@ -6,7 +6,8 @@ body:
     id: change-id
     attributes:
       label: change id
-      placeholder: 예) CC-2026-001
+      placeholder: 예) chg-20260406-001
+      description: 변경 요청과 동일한 `chg-YYYYMMDD-NNN` 형식의 change id를 사용한다.
     validations:
       required: true
   - type: textarea

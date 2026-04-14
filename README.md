@@ -19,11 +19,15 @@
 
 ## change id 규칙
 
+`project-start` intake의 root canonical identifier는 생성된 issue 번호다.
+
+`change id`는 그 이후 실제 change request, rollout, rollback 묶음을 추적할 때 쓰는 보조 식별자다.
+
 - change id는 `chg-YYYYMMDD-NNN` 형식을 사용한다.
 - `YYYYMMDD`는 변경 요청을 등록한 날짜를 뜻한다.
 - `NNN`은 같은 날짜 안에서 001부터 증가하는 세 자리 일련번호다.
-- change request, 구현 PR, rollout 기록, rollback 요청은 같은 작업 단위라면 하나의 change id를 공유한다.
-- change id는 변경 요청 이슈를 등록할 때 발급하고 이후 관련 산출물에서 그대로 재사용한다.
+- post-project-start change request, 구현 PR, rollout 기록, rollback 요청은 같은 작업 단위라면 하나의 change id를 공유한다.
+- change id는 실행 scope가 고정된 change request에서 발급하고 이후 관련 산출물에서 그대로 재사용한다.
 
 ## 개발 타입 규칙
 
@@ -73,6 +77,22 @@ work_type_detail: 복제
 ```
 
 에이전트는 제목과 본문의 타입 값을 항상 일치시켜야 한다.
+
+## 템플릿 하네스 메타 규칙
+
+템플릿 기반 신규 시작이나 유지보수 추적이 필요한 변경 요청은 아래 메타도 함께 남긴다.
+
+```text
+template_id: <template-id>
+template_version: <version>
+deploy_profile: <deploy-profile>
+override_scope: <override-scope-if-relevant>
+lifecycle_action: <adopt|modify|migrate|retire>
+```
+
+`override_scope`는 form field로 강제하지 않더라도, customer-specific divergence 경계를 같이 남겨야 하는 경우 issue body 메모로 추가한다.
+
+이 값은 `clever-context-monorepo`의 template lineage와 bootstrap 선택 결과를 mirror 하는 용도다. 이 저장소가 별도의 정본이 되는 것은 아니다.
 
 ## 기본 흐름
 

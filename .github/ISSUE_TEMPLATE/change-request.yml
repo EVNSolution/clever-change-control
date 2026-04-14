@@ -12,6 +12,24 @@ body:
         - `[일반 개발][리팩토링] bootstrap packet 구조 정리`
 
         본문의 `work_type_group`, `work_type_detail` 값은 이슈 제목의 타입과 항상 일치해야 한다.
+
+        template 기반 작업이면 `template_id`, `template_version`, `deploy_profile`, `lifecycle_action`도 함께 기록한다.
+
+        이 템플릿은 `project-start` root intake가 아니라, scope가 고정된 post-project-start change request를 위한 입력 폼이다.
+  - type: markdown
+    attributes:
+      value: |
+        template 기반 작업이면 issue body에 아래 메타를 같이 남긴다.
+
+        ```text
+        template_id: <template-id>
+        template_version: <version>
+        deploy_profile: <deploy-profile>
+        override_scope: <override-scope-if-relevant>
+        lifecycle_action: <adopt|modify|migrate|retire>
+        ```
+
+        `override_scope`는 필요 시 issue body 메모로 추가한다. 1차에서는 form field 강제보다 본문 일치와 문서 규칙을 우선한다.
   - type: input
     id: title
     attributes:
@@ -25,7 +43,7 @@ body:
     attributes:
       label: change id
       placeholder: 예) chg-20260406-001
-      description: 변경 요청 등록 시 `chg-YYYYMMDD-NNN` 형식으로 발급한다.
+      description: scope가 고정된 post-project-start change request에서 `chg-YYYYMMDD-NNN` 형식으로 발급한다.
     validations:
       required: true
   - type: dropdown
@@ -87,6 +105,7 @@ body:
     attributes:
       label: 대상 service
       placeholder: 예) billing-api
+      description: 이 템플릿은 target service가 이미 정해졌거나 정해져야 하는 post-project-start change request에 사용한다.
     validations:
       required: true
   - type: textarea

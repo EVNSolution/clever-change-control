@@ -1,12 +1,23 @@
 name: 변경 요청
 description: 변경 요청을 등록한다.
-title: "[변경] "
+title: ""
 body:
+  - type: markdown
+    attributes:
+      value: |
+        이슈 제목은 반드시 `[상위 타입][하위 타입] 짧은 제목` 형식으로 작성한다.
+
+        예:
+        - `[MSA/SaaS][복제] 배차 서비스 고객사 배포 분기 추가`
+        - `[일반 개발][리팩토링] bootstrap packet 구조 정리`
+
+        본문의 `work_type_group`, `work_type_detail` 값은 이슈 제목의 타입과 항상 일치해야 한다.
   - type: input
     id: title
     attributes:
-      label: 제목
-      placeholder: 변경 요청 제목을 입력한다.
+      label: 짧은 제목
+      placeholder: 제목에서 타입 prefix를 제외한 짧은 제목을 입력한다.
+      description: 이 값은 실제 issue title의 짧은 제목 부분과 같은 의미로 작성한다.
     validations:
       required: true
   - type: input
@@ -15,6 +26,30 @@ body:
       label: change id
       placeholder: 예) chg-20260406-001
       description: 변경 요청 등록 시 `chg-YYYYMMDD-NNN` 형식으로 발급한다.
+    validations:
+      required: true
+  - type: dropdown
+    id: work_type_group
+    attributes:
+      label: 개발 타입 상위
+      description: 에이전트는 issue title의 첫 번째 bracket 값과 반드시 일치시킨다.
+      options:
+        - MSA/SaaS
+        - 일반 개발
+    validations:
+      required: true
+  - type: dropdown
+    id: work_type_detail
+    attributes:
+      label: 개발 타입 하위
+      description: 에이전트는 issue title의 두 번째 bracket 값과 반드시 일치시킨다.
+      options:
+        - 복제
+        - 신규
+        - 신규 개발
+        - 수정
+        - 변경
+        - 리팩토링
     validations:
       required: true
   - type: textarea

@@ -15,7 +15,7 @@ body:
 
         template 기반 작업이면 `template_id`, `template_version`, `deploy_profile`, `lifecycle_action`도 함께 기록한다.
 
-        이 템플릿은 `project-start` root intake가 아니라, scope가 고정된 post-project-start change request를 위한 입력 폼이다.
+        이 템플릿은 `project-start` root intake가 아니라, root issue 승인 후 scope가 고정된 post-project-start change request를 위한 입력 폼이다.
   - type: markdown
     attributes:
       value: |

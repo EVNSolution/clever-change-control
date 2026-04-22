@@ -4,8 +4,39 @@
 
 이 저장소는 변경 요청, 승인 상태, 구현 연결, 롤아웃 및 롤백 근거를 한곳에서 관리하기 위한 저장소다.
 
+## 작업 시작 규칙
+
+일반적인 CLEVER 작업 시작은 이 저장소가 아니라 `clever-agent-project`에서 한다.
+
+즉 아래처럼 구분한다.
+
+- 작업 라인과 대상 저장소가 아직 정해지지 않은 일반 시작: `clever-agent-project`
+- 현재 `clever-change-control` 자체를 수정하는 작업: 여기서 계속
+
+시작 전에 먼저 아래 명령으로 로컬 3저장소 상태를 확인한다.
+
+```bash
+python3 ../clever-agent-project/scripts/bootstrap_clever_work.py --cwd "$PWD" --workspace-check --json
+```
+
+현재 저장소 자체를 직접 수정하는 작업이면 아래처럼 유지보수 모드로 확인한다.
+
+```bash
+python3 ../clever-agent-project/scripts/bootstrap_clever_work.py --cwd "$PWD" --workspace-check --current-repo-maintenance --json
+```
+
+결과는 아래처럼 해석한다.
+
+- `proceed-with-hard-gate`: 로컬 상태가 정상이며 시작 절차를 진행할 수 있음
+- `current-repo-maintenance`: 현재 저장소 자체를 수정하는 세션이므로 여기서 계속
+- `switch-to-clever-agent-project`: 일반 시작이므로 `clever-agent-project`로 이동
+- `stop-and-fix-workspace`: 필요한 로컬 저장소 구성이 부족하므로 먼저 보완
+
+즉 이 저장소는 승인과 추적용 저장소이지, 일반 시작의 기본 위치는 아니다.
+
 ## 관리하는 것
 
+- `project-start` root issue와 그 승인 상태
 - 변경 요청 이슈와 롤백 요청 이슈
 - 변경 단위별 검토 및 승인 기록
 - 구현 PR과 대상 저장소/서비스 연결 정보
@@ -16,6 +47,15 @@
 - 서비스 소스코드와 애플리케이션 구현
 - 전사 규칙의 정본 문서
 - 서버 배포 방법이나 운영 절차 상세
+
+## project-start root 규칙
+
+모든 작업의 시작점은 `project-start` root issue다.
+
+- root canonical identifier는 생성된 `project-start issue #`다.
+- intake 단계에서는 `business intent`, `constraints`, `expected outcome`, `candidate template lineage`, `candidate target repo/service`를 먼저 기록한다.
+- 일반 intake에서는 `target service` 확정값이나 `change id`를 강제하지 않는다.
+- root issue 승인 후, 실행 scope가 고정되면 scoped change request와 `change id`로 내려간다.
 
 ## change id 규칙
 
@@ -96,11 +136,12 @@ lifecycle_action: <adopt|modify|migrate|retire>
 
 ## 기본 흐름
 
-1. 변경 요청을 등록한다.
-2. 필요한 spec 또는 ui-spec을 `clever-context-monorepo`에 작성하거나 갱신한다.
-3. 요청과 문서를 기준으로 승인한다.
-4. 구현 PR을 대상 저장소와 서비스에 연결한다.
-5. 결과를 환경별로 정리하고 필요하면 rollback 요청으로 되돌린다.
+1. `project-start` root issue를 등록하거나 갱신한다.
+2. root issue 기준으로 작업 목적, 제약, candidate lineage, candidate repo/service를 승인한다.
+3. 실행 scope가 고정되면 scoped change request를 만들고 `change id`를 발급한다.
+4. 필요한 spec 또는 ui-spec을 `clever-context-monorepo`에 작성하거나 갱신한다.
+5. 구현 PR을 대상 저장소와 서비스에 연결한다.
+6. 결과를 환경별로 정리하고 필요하면 rollback 요청으로 되돌린다.
 
 ## clever-context-monorepo와의 관계
 

@@ -75,6 +75,41 @@ If the user is directly changing this repository:
 2. Treat `clever-change-control` as the target repo for this session
 3. Keep `project-start issue #` as the root canonical start identifier and avoid forcing `change_id` early
 
+## Target Repository Traceability Gate
+
+This repository is the required trace anchor for target-repository development.
+When any target project is opened with the CLEVER three-repository control plane,
+the agent must establish the issue-to-branch trace chain here before
+implementation begins.
+
+Required behavior:
+
+- Use `project-start` issues for root start records.
+- Use `change-request` issues for scoped execution.
+- Cross-mention the root context issue, such as
+  `<context-owner>/<root-context-repo>#<issue>`, when one exists.
+- Cross-mention the target repository issue from the relevant
+  `clever-change-control` issue.
+- Ensure the target repository issue mentions the relevant
+  `clever-change-control` issue.
+- Create or confirm an issue-based branch before implementation.
+
+Do not hard-code a GitHub organization, root context repository, or target
+repository name in this rule. Resolve repository identifiers from the current
+workspace, `git remote -v`, issue URLs, or explicit user instructions.
+
+One parent issue may have many child branches. Track that one-to-many
+relationship on the relevant `clever-change-control` issue by listing the active
+branch names, related commits, PR links, current status, and next action.
+
+Do not treat GitHub automatic references as sufficient traceability. GitHub may
+link plain issue mentions, but the agent must maintain the bidirectional working
+context explicitly.
+
+Use `fixes`, `closes`, or similar GitHub keywords only when the PR merge is
+intended to close the referenced issue. Use plain issue mentions for context
+links.
+
 ## Read Order For Repo-Local Work
 
 When the task is specifically about this repository, read in this order:

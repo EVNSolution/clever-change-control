@@ -19,6 +19,20 @@ body:
   - type: markdown
     attributes:
       value: |
+        ## Concurrent Work Gate
+
+        구현 시작 전과 PR merge 전에는 target repo issue와 clever-change-control issue를 같이 확인한다.
+
+        parallel work decision 값:
+        - `done`: 관련 작업이 이미 merged/closed PR로 끝남
+        - `blocked`: 진행 중인 issue, branch, open PR과 범위가 겹침
+        - `allowed-with-non-overlap`: 진행 중인 작업은 있으나 범위가 겹치지 않음
+        - `user-forced-proceed`: 사용자가 `완전 무시모드`, `강제 진행`, `user-forced-proceed`를 명시함
+
+        `user-forced-proceed`는 사용자 강제 진행 기록이다. conflict candidates와 merge risk를 남긴다.
+  - type: markdown
+    attributes:
+      value: |
         template 기반 작업이면 issue body에 아래 메타를 같이 남긴다.
 
         ```text
@@ -82,6 +96,33 @@ body:
     attributes:
       label: 제약
       placeholder: 일정, 범위, 의존성, 제외 조건을 작성한다.
+    validations:
+      required: true
+  - type: dropdown
+    id: parallel-work-decision
+    attributes:
+      label: parallel work decision
+      description: Concurrent Work Gate 판정값이다.
+      options:
+        - done
+        - blocked
+        - allowed-with-non-overlap
+        - user-forced-proceed
+    validations:
+      required: true
+  - type: textarea
+    id: conflict-candidates
+    attributes:
+      label: conflict candidates
+      description: target repo issue, clever-change-control issue, active branch, open PR 확인 결과를 적는다. user-forced-proceed이면 사용자 강제 진행 사유도 적는다.
+      placeholder: |
+        target repo issue:
+        clever-change-control issue:
+        open PR:
+        active branch:
+        conflict candidates:
+        merge risk:
+        user-forced-proceed reason:
     validations:
       required: true
   - type: dropdown

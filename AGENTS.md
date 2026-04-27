@@ -137,6 +137,34 @@ Use `fixes`, `closes`, or similar GitHub keywords only when the PR merge is
 intended to close the referenced issue. Use plain issue mentions for context
 links.
 
+## Concurrent Work Gate
+
+For target-repository development, this repository must record the parallel work
+decision before implementation and before PR merge.
+
+Required fields in the relevant project-start or change-request issue:
+
+- `parallel work decision`: `done`, `blocked`, `allowed-with-non-overlap`, or
+  `user-forced-proceed`
+- `target repo issue`
+- `clever-change-control issue`
+- `open PR` candidates checked
+- `conflict candidates`
+- `user-forced-proceed reason`, when the user requests 완전 무시모드 or 강제 진행
+
+Decision meanings:
+
+- `done`: the related target repo issue already has a merged or closed PR and no
+  active follow-up branch.
+- `blocked`: an active issue, branch, or open PR overlaps the target service,
+  API, data, deploy, or file scope.
+- `allowed-with-non-overlap`: active parallel work exists, but the agent records
+  why the issue-level scope does not overlap.
+- `user-forced-proceed`: 사용자 강제 진행. The agent does not treat concurrent
+  issue, branch, or open PR overlap as a blocker after the user explicitly
+  requests this mode. The issue must still record conflict candidates and known
+  merge risk.
+
 ## Read Order For Repo-Local Work
 
 When the task is specifically about this repository, read in this order:

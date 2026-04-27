@@ -56,7 +56,8 @@ python3 ../clever-agent-project/scripts/bootstrap_clever_work.py --cwd "$PWD" --
 - `main` 삭제 금지
 - force push 금지
 - `main` 변경은 PR 필수
-- PR 승인 1명 이상 필수
+- PR 필수지만 승인 수는 0명
+- merge/write는 repo admin 권한자만 수행
 - admin bypass는 `pull_request` 모드만 허용
 
 이 저장소 자체를 수정할 때도 역할 접두사 branch에서 작업하고 PR로 올린다.

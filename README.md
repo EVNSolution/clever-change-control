@@ -48,6 +48,19 @@ python3 ../clever-agent-project/scripts/bootstrap_clever_work.py --cwd "$PWD" --
 - 전사 규칙의 정본 문서
 - 서버 배포 방법이나 운영 절차 상세
 
+## main 브랜치 운영 규칙
+
+이 repo는 public으로 운영하며, `main`은 GitHub ruleset `CLEVER protect main`으로 보호한다.
+
+- `main` direct push 금지
+- `main` 삭제 금지
+- force push 금지
+- `main` 변경은 PR 필수
+- PR 승인 1명 이상 필수
+- admin bypass는 `pull_request` 모드만 허용
+
+이 저장소 자체를 수정할 때도 역할 접두사 branch에서 작업하고 PR로 올린다.
+
 ## project-start root 규칙
 
 모든 작업의 시작점은 `project-start` root issue다.

@@ -60,6 +60,12 @@ python3 ../clever-agent-project/scripts/bootstrap_clever_work.py --cwd "$PWD" --
 - merge/write는 repo admin 권한자만 수행
 - admin bypass는 `pull_request` 모드만 허용
 
+`main` merge commit 제목은 PR merge임이 드러나게 아래 형식을 쓴다.
+
+```text
+PR-MERGE <owner>/<repo>#<pr-number>: <pr-title>
+```
+
 이 저장소 자체를 수정할 때도 역할 접두사 branch에서 작업하고 PR로 올린다.
 
 ## project-start root 규칙

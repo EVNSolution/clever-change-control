@@ -69,6 +69,27 @@ Merge pull request #<pr-number> from <owner>/<source-branch>
 
 이 저장소 자체를 수정할 때도 역할 접두사 branch에서 작업하고 PR로 올린다.
 
+### PR 완료 후 branch 정리
+
+PR이 merge됐거나 source branch를 버리기로 하고 closed 처리된 뒤에는 task
+branch를 정리한다. 단, 해당 branch가 아직 open PR, 후속 issue, child branch,
+active release/hotfix에 쓰이면 삭제하지 않는다.
+
+기본 명령은 아래 순서다.
+
+```bash
+git switch main
+git pull --ff-only origin main
+git branch -d <source-branch>
+git push origin --delete <source-branch>
+git fetch --prune origin
+```
+
+- `main`과 `dev`는 삭제 대상이 아니다.
+- 기본은 `git branch -d <source-branch>`를 쓴다.
+- merge 없이 닫은 branch를 폐기해야 할 때만 사용자 확인 후 `git branch -D <source-branch>`를 쓴다.
+- remote branch가 GitHub에서 이미 삭제됐더라도 `git fetch --prune origin`으로 로컬 추적 branch를 정리한다.
+
 ## project-start root 규칙
 
 모든 작업의 시작점은 `project-start` root issue다.

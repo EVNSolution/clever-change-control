@@ -169,6 +169,17 @@ Use `fixes`, `closes`, or similar GitHub keywords only when the PR merge is
 intended to close the referenced issue. Use plain issue mentions for context
 links.
 
+Retroactive repair:
+
+- If a completed target repository issue is found without an explicit
+  `clever-change-control` scoped issue, create a retro scoped issue here.
+- Record the root project-start issue, target repository issue, original branch,
+  original PR, and `parallel work decision: done` in the retro issue body.
+- Add a backlink comment to the target repository issue.
+- Close the retro issue as completed immediately after the backlink is recorded.
+- This open/close trail is an audit repair only; it must not reopen the completed
+  implementation scope.
+
 ## Concurrent Work Gate
 
 For target-repository development, this repository must record the parallel work

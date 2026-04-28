@@ -185,6 +185,15 @@ lifecycle_action: <adopt|modify|migrate|retire>
 5. 구현 PR을 대상 저장소와 서비스에 연결한다.
 6. 결과를 환경별로 정리하고 필요하면 rollback 요청으로 되돌린다.
 
+## 누락 trace 보정
+
+완료된 target repository issue에서 scoped change-control issue 연결이 빠진 것을
+발견하면 단순 comment만 남기지 않는다. retro scoped issue를 열고, root
+project-start, target issue, 원래 branch/PR, `parallel work decision: done`을
+기록한 뒤 target issue에 backlink를 남기고 즉시 completed로 닫는다. 이
+open/close 기록은 감사 가능한 추적성 보정이며 완료된 구현 범위를 다시 여는
+의미가 아니다.
+
 ## clever-context-monorepo와의 관계
 
 `clever-context-monorepo`는 규칙, 구조, 용어, 서비스 문서의 정본을 관리한다. 이 저장소는 그 정본을 바탕으로 변경 단위의 승인 흐름과 구현 연결, rollout/rollback 이력을 관리한다.

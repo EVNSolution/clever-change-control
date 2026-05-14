@@ -18,6 +18,8 @@ Partner Dashboard submission lane.
   - EVNSolution/shopify-clever#7 — dashboard trace links in approval docs
   - EVNSolution/shopify-clever#8 — verifier-enforced dashboard trace
   - EVNSolution/shopify-clever#9 — 66-check verifier evidence docs
+  - EVNSolution/shopify-clever#10 — dashboard submission evidence template
+  - EVNSolution/shopify-clever#11 — production bundle release evidence docs
 
 ## Runtime release evidence
 
@@ -33,11 +35,14 @@ Partner Dashboard submission lane.
 
 ## Latest repository readiness evidence
 
-- Latest target main at handoff: `22c740805b39cc74de2b0b7f8cd05f3e632b0eac`
-- Verifier-enforced readiness commit: `f27a614f70fd1e371d8a0ee155d2d53ea58b8602`
-- Main CI evidence for verifier commit: https://github.com/EVNSolution/shopify-clever/actions/runs/25855617729
+- Latest target main at handoff: `0b37a6dcd2644e7a6c66d3d002659489891db776`
+- Deployed production bundle commit: `b64fa2c8ebcf0bf5cb6e9eebc04450e557fa9d01`
+- Verifier-enforced production-release evidence commit: `0b37a6dcd2644e7a6c66d3d002659489891db776`
+- PR CI evidence for latest verifier update: https://github.com/EVNSolution/shopify-clever/actions/runs/25856619121
+- Main CI evidence for latest verifier update: https://github.com/EVNSolution/shopify-clever/actions/runs/25856695136
+- Production workflow evidence for deployed bundle: https://github.com/EVNSolution/shopify-clever/actions/runs/25856190483
 - Readiness command: `npm run check:shopify-submission`
-- Readiness result: `shopify-submission-readiness-ok`, `66` checks
+- Readiness result: `shopify-submission-readiness-ok`, `91` checks
 
 ## Production smoke evidence
 
@@ -50,10 +55,13 @@ The production bundle was rebuilt/restarted on EC2, then smoke tested:
 - The admin HTML included `shopify-api-key` meta.
 - Invalid compliance webhook HMAC smoke returned 401.
 
-Operational note: GitHub `workflow_dispatch` run 25854536246 validated successfully but
+Operational note: GitHub `workflow_dispatch` run 25856190483 validated successfully but
 its EC2 deploy job could not reach SSH port 22 from the GitHub runner. The production
-bundle was therefore deployed from a clean local git archive through a temporary
-current-IP-only SSH security-group rule, then that temporary rule was revoked.
+bundle `b64fa2c8ebcf0bf5cb6e9eebc04450e557fa9d01` was therefore deployed from a clean
+local git archive through a temporary current-IP-only SSH security-group rule
+`106.101.131.120/32`, then that temporary rule was revoked. The earlier run
+25854536246 showed the same runner SSH reachability limitation for the previous
+release attempt.
 
 ## Prepared target repository artifacts
 

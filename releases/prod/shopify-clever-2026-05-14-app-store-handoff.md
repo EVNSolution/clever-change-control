@@ -20,6 +20,8 @@ Partner Dashboard submission lane.
   - EVNSolution/shopify-clever#9 — 66-check verifier evidence docs
   - EVNSolution/shopify-clever#10 — dashboard submission evidence template
   - EVNSolution/shopify-clever#11 — production bundle release evidence docs
+  - EVNSolution/shopify-clever#12 — final approval plan evidence
+  - EVNSolution/shopify-clever#13 — stable final plan trace wording
 
 ## Runtime release evidence
 
@@ -35,9 +37,10 @@ Partner Dashboard submission lane.
 
 ## Latest repository readiness evidence
 
-- Latest target main at handoff: `0b37a6dcd2644e7a6c66d3d002659489891db776`
+- Latest target main at handoff: `16223b0c4efb1f771494d03567994b965bd7cfd0`
 - Deployed production bundle commit: `b64fa2c8ebcf0bf5cb6e9eebc04450e557fa9d01`
-- Verifier-enforced production-release evidence commit: `0b37a6dcd2644e7a6c66d3d002659489891db776`
+- Production-release evidence docs commit: `0b37a6dcd2644e7a6c66d3d002659489891db776`
+- Final approval plan evidence commit: `16223b0c4efb1f771494d03567994b965bd7cfd0`
 - PR CI evidence for latest verifier update: https://github.com/EVNSolution/shopify-clever/actions/runs/25856619121
 - Main CI evidence for latest verifier update: https://github.com/EVNSolution/shopify-clever/actions/runs/25856695136
 - Production workflow evidence for deployed bundle: https://github.com/EVNSolution/shopify-clever/actions/runs/25856190483

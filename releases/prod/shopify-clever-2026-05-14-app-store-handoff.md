@@ -22,6 +22,8 @@ Partner Dashboard submission lane.
   - EVNSolution/shopify-clever#11 — production bundle release evidence docs
   - EVNSolution/shopify-clever#12 — final approval plan evidence
   - EVNSolution/shopify-clever#13 — stable final plan trace wording
+  - EVNSolution/shopify-clever#14 — detailed Shopify AI self-review evidence
+  - EVNSolution/shopify-clever#15 — production release evidence synchronization
 
 ## Runtime release evidence
 
@@ -37,15 +39,17 @@ Partner Dashboard submission lane.
 
 ## Latest repository readiness evidence
 
-- Latest target main at handoff: `16223b0c4efb1f771494d03567994b965bd7cfd0`
-- Deployed production bundle commit: `b64fa2c8ebcf0bf5cb6e9eebc04450e557fa9d01`
+- Latest target main at handoff: `5ff388b53c421f5761b52ddc16a468ec5cc387b5`
+- Deployed production bundle commit: `16223b062079af5632b80d1bf08abd5bf775f0be`
 - Production-release evidence docs commit: `0b37a6dcd2644e7a6c66d3d002659489891db776`
-- Final approval plan evidence commit: `16223b0c4efb1f771494d03567994b965bd7cfd0`
-- PR CI evidence for latest verifier update: https://github.com/EVNSolution/shopify-clever/actions/runs/25856619121
-- Main CI evidence for latest verifier update: https://github.com/EVNSolution/shopify-clever/actions/runs/25856695136
+- Final approval plan evidence commit: `5ff388b53c421f5761b52ddc16a468ec5cc387b5`
+- PR CI evidence for latest verifier update: https://github.com/EVNSolution/shopify-clever/actions/runs/25858058940
+- Main CI evidence for latest verifier update: https://github.com/EVNSolution/shopify-clever/actions/runs/25858126053
 - Production workflow evidence for deployed bundle: https://github.com/EVNSolution/shopify-clever/actions/runs/25856190483
+- Detailed AI self-review PR CI: https://github.com/EVNSolution/shopify-clever/actions/runs/25857796867
+- Detailed AI self-review main CI: https://github.com/EVNSolution/shopify-clever/actions/runs/25857865303
 - Readiness command: `npm run check:shopify-submission`
-- Readiness result: `shopify-submission-readiness-ok`, `91` checks
+- Readiness result: `shopify-submission-readiness-ok`, `104` checks
 
 ## Production smoke evidence
 
@@ -61,8 +65,9 @@ The production bundle was rebuilt/restarted on EC2, then smoke tested:
 Operational note: GitHub `workflow_dispatch` run 25856190483 validated successfully but
 its EC2 deploy job could not reach SSH port 22 from the GitHub runner. The production
 bundle `b64fa2c8ebcf0bf5cb6e9eebc04450e557fa9d01` was therefore deployed from a clean
-local git archive through a temporary current-IP-only SSH security-group rule
-`106.101.131.120/32`, then that temporary rule was revoked. The earlier run
+local git archive through a temporary current-IP-only SSH security-group rule. A later
+production refresh deployed `16223b062079af5632b80d1bf08abd5bf775f0be` to `/srv/shopify-clever`
+and recorded it in `.release-sha`; temporary current-IP SSH ingress `1.231.151.99/32` was revoked after deploy. The earlier run
 25854536246 showed the same runner SSH reachability limitation for the previous
 release attempt.
 
@@ -71,12 +76,18 @@ release attempt.
 - `docs/shopify-app-store-approval-report.md`
 - `docs/shopify-app-store-completion-audit.md`
 - `docs/shopify-partner-dashboard-submission-packet.md`
+- `docs/shopify-ai-self-review-detail.md`
 - `docs/shopify-app-store-listing-draft.md`
 - `docs/shopify-protected-customer-data-field-map.md`
 - `docs/shopify-privacy-policy-draft.md`
 - `docs/shopify-app-store-assets/clever-app-icon-1200.png`
 - `docs/shopify-app-store-assets/screenshot-and-screencast-shotlist.md`
 - `scripts/check-shopify-submission-readiness.mjs`
+
+Additional trace comments:
+
+- EVNSolution/shopify-clever#6 comment: https://github.com/EVNSolution/shopify-clever/issues/6#issuecomment-4450378623
+- EVNSolution/clever-change-control#211 comment: https://github.com/EVNSolution/clever-change-control/issues/211#issuecomment-4450378736
 
 ## Remaining manual Partner Dashboard blockers
 
